@@ -30,6 +30,14 @@ class Model:
         ]
 
     '''
+    A function that changes the visited status of a particular location within the world.
+    Takes in the player to get location, and returns the Location object that it has changed the
+    visited status of
+    '''
+    def change_visited(self, player):
+        return 0
+ 
+    '''
     take user input from the terminal and return the given command as a string, separates basic
     from the argument consuming commands
     '''
@@ -67,7 +75,7 @@ class Model:
         return 0
         # TODO()
 
-    '''move an  object within the world TODO()'''
+    '''move an object within the world TODO()'''
     def move(self):
         return 0
 
