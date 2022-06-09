@@ -19,23 +19,21 @@ class Model:
             'south': 'south',
             'west': 'west',
             'east': 'east',
+        }
+        self.view_commands = {
             'where': 'where',
             'where am i': 'where',
             'look': 'where',
-            'look around': 'look',
+            'look around': 'here',
+            'help': 'help',
+            'h': 'help',
+            'help me': 'help',
+            'help please': 'help'
         }
         self.advanced_command_list = [
             'move',
             'take'
         ]
-
-    '''
-    A function that changes the visited status of a particular location within the world.
-    Takes in the player to get location, and returns the Location object that it has changed the
-    visited status of
-    '''
-    def change_visited(self, player):
-        return 0
  
     '''
     take user input from the terminal and return the given command as a string, separates basic
@@ -44,14 +42,20 @@ class Model:
     def take_input(self):
         command = input()
         commands = command.split(' ')
-        if command in self.simple_command_dict:
-            return command, 'basic'
-        elif len(commands) >= 1: #advanced command
+        if command in self.simple_command_dict: # basic command
+            return self.simple_command_dict[command], 'basic'
+        elif command in self.view_commands:
+            return self.view_commands[command], 'view'
+        elif len(commands) >= 2: #advanced command
             for arg in commands:
+                #print('advanced command check, arg: ', arg)
                 if arg in self.advanced_command_list:
                     return command, 'advanced'
+            #invalid command, must catch as it won't jump to last check
+            return command, False
         else: #invalid command
-            return False
+            #print('invalid command is: ', command)
+            return command, False
     
     '''
     take the command string, and parse to determine which action will be taken.
@@ -60,7 +64,7 @@ class Model:
     '''
     def parse_input_basic(self, command):
         if command == 'n' or command == 's' or command == 'w' or command == 'e':
-            return self.player.move_location(command)
+            return self.player.move_location(command, self.world)
         if command == 'help' or command == 'h':
             return 'help'
         if command == "where" or command == "where am i":

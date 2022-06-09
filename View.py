@@ -44,6 +44,13 @@ class View:
         print("Welcome to \"While I'm Gone\". Here is a comprehensive list of commands at your disposal\nn or north\ns or south\ne or east\nw or west\nmove [object]")
 
     '''
+    Print out message for incorrect user input
+    takes none, returns none
+    '''
+    def incorrect_input(self):
+        print("I didn't understand that, use 'help' to get a full list of commands")
+
+    '''
     prints out a description of the players current location, as well as their neighbors vague descriptions
     '''
     def print_location_description(self, model):
