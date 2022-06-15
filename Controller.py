@@ -1,6 +1,5 @@
 from Model import *
 from View import *
-import tkinter as tk
 
 class Controller:
 
