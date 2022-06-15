@@ -7,10 +7,16 @@ class Location:
 
     '''
     Simply changes the visited attribute of the location called upon to True
-    Takes in location, returns none
+    Takes in location, returns True if it was originally unvisited (i.e. first visit)
     '''
     def change_visited(self):
-        self.visited = True
+        if self.visited == False:
+            self.visited = True
+            return True
+        else:
+            self.visited = True
+            return False
+        
         
     '''
     Assigns the neighboring locations of a particular location in the world,
@@ -19,12 +25,11 @@ class Location:
     '''
     def assign_neighbors(self, name):
         if name == "Castle Yard":
-            return {'n': "Graveyard",
-                    's': "Tunnel"
+            return {'north': "Graveyard",
+                    'south': "Tunnel"
             }
         elif name == "Graveyard":
-            return {'s': 'Castle Yard'}
-
+            return {'south': 'Castle Yard'}
         elif name == "Tunnel":
-            return {'n': 'Castle Yard'}
+            return {'north': 'Castle Yard'}
 

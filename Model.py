@@ -43,6 +43,7 @@ class Model:
         command = input()
         commands = command.split(' ')
         if command in self.simple_command_dict: # basic command
+            #print('basic command from dict:', self.simple_command_dict[command])
             return self.simple_command_dict[command], 'basic'
         elif command in self.view_commands:
             return self.view_commands[command], 'view'
@@ -63,7 +64,9 @@ class Model:
     be handled within the controller. No model to view communication
     '''
     def parse_input_basic(self, command):
-        if command == 'n' or command == 's' or command == 'w' or command == 'e':
+        print('parse input:', command)
+        if command == 'north' or command == 'south' or command == 'east' or command == 'west':
+            print('moving:')
             return self.player.move_location(command, self.world)
         if command == 'help' or command == 'h':
             return 'help'
